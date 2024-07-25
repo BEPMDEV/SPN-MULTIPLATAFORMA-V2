@@ -16,7 +16,7 @@ const LoginPage = () => {
     setLoading(true);
   };
 
-  
+
   useEffect(() => {
     if (loading) {
       const timer = setTimeout(() => {
@@ -33,7 +33,7 @@ const LoginPage = () => {
     <>
       <StatusBar style='light' />
       <Background>
-
+        <Text className='text-black text-4xl'>Hola mundo</Text>
         <TextInput
           placeholder="Ingrese Usuario"
           returnKeyType="next"
