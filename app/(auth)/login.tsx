@@ -16,13 +16,11 @@ const LoginPage = () => {
     setLoading(true);
   };
 
-
   useEffect(() => {
     if (loading) {
       const timer = setTimeout(() => {
         setLoading(false);
-        // Redirigir a la siguiente página
-        router.replace('/home'); // Cambia '/nextPage' a la ruta a la que quieres redirigir
+        router.replace('/home');
       }, 3000);
 
       return () => clearTimeout(timer);
@@ -55,9 +53,9 @@ const LoginPage = () => {
           onPress={handlePress}
         >
           {loading ? (
-            <ActivityIndicator size={48} color="#fff" />
+            <ActivityIndicator size={55} color="#fff" />
           ) : (
-            <Text style={[styles.buttonText, { fontSize: fontSizes.buttonText }]}>INICIAR SESIÓN</Text>
+            <Text className='font-bold' style={[styles.buttonText, { fontSize: fontSizes.buttonText }]}>INICIAR SESIÓN</Text>
           )}
         </Pressable>
       </Background>
@@ -67,7 +65,7 @@ const LoginPage = () => {
 
 const styles = StyleSheet.create({
   button: {
-    paddingVertical: 12,
+    paddingVertical: 8,
     paddingHorizontal: 24,
     borderRadius: 20,
     alignItems: 'center',
@@ -78,7 +76,6 @@ const styles = StyleSheet.create({
 
   buttonText: {
     color: '#fff',
-    fontWeight: 'bold',
     padding: 12,
   },
 });

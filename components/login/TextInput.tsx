@@ -14,6 +14,7 @@ const TextInput = ({ errorText, ...props }: Props) => {
   return (
     <View style={styles.container}>
       <Input
+       className='font-regular'
         style={[styles.input, { fontSize: fontSizes.text, backgroundColor: isWidthReached? 'transparent' : 'white' }]}
         placeholderTextColor={'#ff8c00'}
         {...props}

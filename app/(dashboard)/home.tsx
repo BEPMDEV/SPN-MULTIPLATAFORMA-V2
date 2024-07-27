@@ -1,9 +1,12 @@
-import { Text, View } from "react-native";
+import React from "react";
+import { View, Text } from "react-native";
+import Logo from 'react-native-vector-icons/AntDesign'
 
-export default function HomePage() {
-  return (
-    <View>
-      <Text>Hello Page</Text>
-    </View>
-  );
-}
+const HomePage = () => {
+    return(
+        
+        <Text className="text-black">Hola mundo</Text>
+    )
+};
+
+export default HomePage;

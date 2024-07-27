@@ -30,11 +30,28 @@ export default function Root({ children }: PropsWithChildren) {
 
 const responsiveBackground = `
 html {
-  heigth: 100%;
+  max-height: 100vh;
+}
+
+body {
+  max-height: 100vh;
 }
 
 input:focus {
   outline: none;
+}
+
+* {
+  transition: background-color 0.2s ease-in-out;
+}
+
+* {
+  scrollbar-width: none; /* Para Firefox */
+  -ms-overflow-style: none; /* Para Internet Explorer y Edge */
+}
+
+*::-webkit-scrollbar {
+  display: none; /* Para Chrome, Safari y Opera */
 }
   
 body {
