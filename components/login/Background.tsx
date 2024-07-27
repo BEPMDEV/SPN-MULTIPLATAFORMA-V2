@@ -95,8 +95,8 @@ const styles = StyleSheet.create({
   },
   overlay: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: '#431407',
-    opacity: 0.5,
+    backgroundColor: isWeb? '#431407': '#250d06' ,
+    opacity: isWeb? 0.5 : 0.6,
   },
   container: {
     flex: 1,

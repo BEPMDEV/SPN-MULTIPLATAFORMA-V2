@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Platform, Pressable } from "react-native"
+import { Pressable } from "react-native"
 
 type Props = React.ComponentProps<typeof Pressable> & 
 { 
