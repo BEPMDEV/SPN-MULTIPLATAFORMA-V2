@@ -13,7 +13,7 @@ const isMobile = Platform.OS === 'android' || Platform.OS === 'ios';
 
 const DashboardLayout: React.FC = () => {
   const { height } = useResponsiveLayout();
-  const { title, text, small, buttonText } = useAdaptiveFont();
+  const { title, text, small, parrafo } = useAdaptiveFont();
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
@@ -21,7 +21,7 @@ const DashboardLayout: React.FC = () => {
       <StatusBar style='light' backgroundColor="rgb(17 24 39)" />
 
       <View className="lg:flex-row">
-        <Sidebar data={sidebarData} styles={{ height, title, text, small, buttonText }} sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+        <Sidebar data={sidebarData} styles={{ height, title, text, small, parrafo }} sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
 
         <Pressable disabled={sidebarOpen ? false : true} className="lg:w-3/4 xl:w-4/5" onPress={() => setSidebarOpen(false)}>
           <View>

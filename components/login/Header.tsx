@@ -10,7 +10,7 @@ const Header = ({ children }: Props) => {
 
   const fontSizes = useAdaptiveFont();
 
-  return <Text className='font-bold' style={[styles.header, { fontSize: fontSizes.title }]}>{children}</Text>
+  return <Text className='font-bold' style={[styles.header, { fontSize: fontSizes.big }]}>{children}</Text>
 };
 
 const styles = StyleSheet.create({

@@ -23,7 +23,7 @@ const Background = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     const imageBackground = async () => {
       const image = await require('@/assets/images/login/background.jpg')
-      const logo = await require('@/assets/images/login/logo.png')
+      const logo = await require('@/assets/images/login/logo2.png')
       setBackgroundImage(image)
       setLogo(logo)
     }
@@ -95,8 +95,8 @@ const styles = StyleSheet.create({
   },
   overlay: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: isWeb? '#431407': '#250d06' ,
-    opacity: isWeb? 0.5 : 0.6,
+    backgroundColor: isWeb? '#431407': '#130400' ,
+    opacity: isWeb? 0.5 : 0.7,
   },
   container: {
     flex: 1,
