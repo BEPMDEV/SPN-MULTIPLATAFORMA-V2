@@ -15,7 +15,7 @@ const TextInput = ({ errorText, ...props }: Props) => {
     <View style={styles.container}>
       <Input
        className='font-regular'
-        style={[styles.input, { fontSize: fontSizes.text, backgroundColor: isWidthReached? 'transparent' : 'white' }]}
+        style={[styles.input, { fontSize: fontSizes.text, backgroundColor: isWidthReached? 'transparent' : 'white', borderColor: isWidthReached? '#ff8c00' : undefined, borderWidth: isWidthReached? 2 : undefined }]}
         placeholderTextColor={'#ff8c00'}
         {...props}
       />
@@ -30,7 +30,6 @@ const styles = StyleSheet.create({
     marginVertical: 12,
   },
   input: {
-    borderColor: '#ff8c00',
     borderWidth: 2,
     paddingHorizontal: 15, // Espaciado horizontal
     paddingVertical: 18,
