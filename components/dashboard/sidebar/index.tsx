@@ -56,7 +56,7 @@ const Sidebar: React.FC<SidebarProps> = ({ data, styles, sidebarOpen, setSidebar
           <View key={index}>
             <Text className="font-semiBold text-gray-600 ml-4 mt-7" style={{ fontSize: parrafo }}>{group.title}</Text>
             {group.items.map((item, itemIndex) => (
-              <SidebarItem key={itemIndex} item={item} textStyle={{ fontSize: text }} smallTextStyle={{ fontSize: small }} />
+              <SidebarItem key={itemIndex} item={item} setSidebarOpen={setSidebarOpen} textStyle={{ fontSize: text }} smallTextStyle={{ fontSize: small }} />
             ))}
           </View>
         ))}

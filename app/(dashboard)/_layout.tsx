@@ -14,6 +14,7 @@ const isMobile = Platform.OS === 'android' || Platform.OS === 'ios';
 const DashboardLayout: React.FC = () => {
   const { height } = useResponsiveLayout();
   const { title, text, small, parrafo } = useAdaptiveFont();
+  
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (

@@ -9,9 +9,10 @@ interface SidebarItemProps {
   item: SidebarItemType;
   textStyle: object;
   smallTextStyle: object;
+  setSidebarOpen: (open: boolean) => void;
 }
 
-const SidebarItem: React.FC<SidebarItemProps> = ({ item, textStyle, smallTextStyle }) => {
+const SidebarItem: React.FC<SidebarItemProps> = ({ item, textStyle, smallTextStyle, setSidebarOpen }) => {
   const pathname = usePathname();
   const childRouteActive = item.children ? item.children.some(child => child.route === pathname) : false;
   const [dropdown, setDropdown] = useState(childRouteActive);
@@ -27,6 +28,7 @@ const SidebarItem: React.FC<SidebarItemProps> = ({ item, textStyle, smallTextSty
       return;
     }
     router.push(route);
+    setSidebarOpen(false)
   };
 
   return (
