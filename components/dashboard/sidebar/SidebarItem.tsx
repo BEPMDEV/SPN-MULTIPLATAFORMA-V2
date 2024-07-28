@@ -18,19 +18,22 @@ const SidebarItem: React.FC<SidebarItemProps> = ({ item, textStyle, smallTextSty
   const active = !item.children ? item.route === pathname : false;
   const router = useRouter();
 
-  const handlePress = (route: string | null) => {
-    if (route) {
-      router.push(route);
-    } else {
+  const handlePress = (route: string | null, isActive: boolean) => {
+    if (!route) {
       console.error("Route is undefined");
+      return;
     }
+    if (isActive) {
+      return;
+    }
+    router.push(route);
   };
 
   return (
     <View>
       <ViewHover
         active={childRouteActive ? true : active}
-        onPress={() => item.children ? setDropdown(!dropdown) : (active ? undefined : handlePress(item.route))}
+        onPress={() => item.children ? setDropdown(!dropdown) : (active ? undefined : handlePress(item.route, active))}
         className="p-2.5 mt-3 justify-between items-center flex-row rounded-md px-4"
       >
         <View className="flex-row items-center">
@@ -52,7 +55,7 @@ const SidebarItem: React.FC<SidebarItemProps> = ({ item, textStyle, smallTextSty
 
             return (
               <ViewHover
-                onPress={() => activeChild ? undefined : handlePress(child.route)}
+                onPress={() => activeChild ? undefined : handlePress(child.route, activeChild)}
                 active={activeChild}
                 key={index}
                 onHoverInColor="bg-gray-700"
