@@ -31,7 +31,7 @@ const DashboardLayout: React.FC = () => {
       <View className="lg:flex-row">
         <Sidebar data={sidebarData} styles={{ height, title, text, small, parrafo }} sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
 
-        <Pressable disabled={sidebarOpen || perfilOpen ? false : true} className="lg:w-3/4 xl:w-4/5" onPress={() => {setSidebarOpen(false); setPerfilOpen(false)}}>
+        <Pressable style={{cursor: 'auto'}} disabled={ perfilOpen ? false : true} className="lg:w-3/4 xl:w-4/5" onPress={() => {setPerfilOpen(false)}}>
           <View>
             <View className="bg-gray-900 h-20 px-4 w-full z-[1] flex-row items-center justify-between lg:flex-row-reverse absolute lg:relative">
               <Pressable className="w-[50px] lg:hidden" onPress={() => {setSidebarOpen(true); setPerfilOpen(false)}} style={{ cursor: 'pointer' }}>
@@ -69,6 +69,8 @@ const DashboardLayout: React.FC = () => {
                 </TextHover>
               </View>
             </Pressable>
+
+            <Pressable style={{cursor: 'auto'}} onPress={() => setSidebarOpen(false)} className={`absolute bg-black z-[1] w-full h-full opacity-50 lg:hidden ${!sidebarOpen && 'hidden'}`}></Pressable>
 
             <ScrollView className="h-full bg-gray-950">
               <View style={{ height: isMobile ? 'auto' : height - 80 }} className="mt-20 lg:m-0 px-4 py-3">
