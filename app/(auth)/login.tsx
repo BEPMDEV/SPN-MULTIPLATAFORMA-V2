@@ -2,7 +2,8 @@ import Background from '@/components/login/Background';
 import { useState, useEffect } from 'react';
 import { Text } from 'react-native-paper';
 import TextInput from '@/components/login/TextInput';
-import { Pressable, ActivityIndicator, StyleSheet } from 'react-native';
+import { Pressable, StyleSheet } from 'react-native';
+import { ActivityIndicator } from 'react-native-paper';
 import { StatusBar } from 'expo-status-bar'
 import useAdaptiveFont from '@/hooks/useAdaptativeFont';
 import { useRouter } from 'expo-router';
