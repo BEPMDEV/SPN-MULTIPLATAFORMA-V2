@@ -26,14 +26,14 @@ const Sidebar: React.FC<SidebarProps> = ({ data, styles, sidebarOpen, setSidebar
     <ScrollView style={{ height }} className={`hidden lg:flex p-2 absolute w-[300px] lg:w-auto z-[1] lg:relative lg:z-0 bg-gray-900 ${sidebarOpen && 'flex'}`}>
       {/* Parte superior del sidebar */}
       <View>
-        <View className="px-2.5 items-center flex-row justify-between">
+        <View className="pr-2.5 items-center flex-row justify-between">
           <View className="flex-row items-center justify-center">
 
             {/* <View className="px-2 py-1 bg-blue-600 rounded-md">
               <IconEntypo name="notification" color={'white'} size={25} />
             </View> */}
 
-            <Image className='w-20 h-20' source={require('@/assets/images/login/logo2.png')}/>
+            <Image className='w-20 h-20' source={require('@/assets/images/general/logo2.png')}/>
             
             <Text style={{ fontSize: title }} className="text-gray-200 ml-3 font-bold">SPNG</Text>
             

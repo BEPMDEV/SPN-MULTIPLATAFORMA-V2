@@ -12,6 +12,7 @@ import Logo from './Logo';
 import Header from './Header';
 import useResponsiveLayout from '@/hooks/useResponsiveLayout';
 import { useEffect } from 'react';
+import useResizeReload from '@/hooks/useResizeReload';
 
 const isWeb = Platform.OS === 'web';
 
@@ -20,10 +21,12 @@ const Background = ({ children }: { children: React.ReactNode }) => {
   const [backgroundImage, setBackgroundImage] = useState<ImageSourcePropType | null>()
   const [logo, setLogo] = useState<ImageSourcePropType | null>()
 
+  const size = useResizeReload(400)
+
   useEffect(() => {
     const imageBackground = async () => {
       const image = await require('@/assets/images/login/background.jpg')
-      const logo = await require('@/assets/images/login/logo2.png')
+      const logo = await require('@/assets/images/general/logo2.png')
       setBackgroundImage(image)
       setLogo(logo)
     }
@@ -45,7 +48,9 @@ const Background = ({ children }: { children: React.ReactNode }) => {
         <View style={[isWeb && { height: height }, styles.overlay]} />
 
         <KeyboardAvoidingView style={[styles.container, { width: containerWidth as any }]}>
-          <Logo image={logo}/>
+          {
+            size && <Logo image={logo}/>
+          }
           <Header>Sistema de Padrón Nominal de Gestantes</Header>
           {children}
         </KeyboardAvoidingView>
@@ -95,8 +100,8 @@ const styles = StyleSheet.create({
   },
   overlay: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: isWeb? '#431407': '#130400' ,
-    opacity: isWeb? 0.5 : 0.7,
+    backgroundColor: '#290b03' ,
+    opacity: 0.5,
   },
   container: {
     flex: 1,
