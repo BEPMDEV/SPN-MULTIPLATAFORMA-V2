@@ -5,7 +5,7 @@ import Logo from 'react-native-vector-icons/AntDesign'
 const HomePage = () => {
     return(
         
-        <Text className="text-black">Hola mundo</Text>
+        <Text className="text-white">Home</Text>
     )
 };
 
