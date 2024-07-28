@@ -30,7 +30,6 @@ const styles = StyleSheet.create({
     marginVertical: 12,
   },
   input: {
-    borderWidth: 2,
     paddingHorizontal: 15, // Espaciado horizontal
     paddingVertical: 18,
     borderRadius: 8

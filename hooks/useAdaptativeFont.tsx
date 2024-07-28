@@ -29,7 +29,7 @@ const getFontSizes = () => {
       title: 22, //
       text: 14, //
       small: 13,
-      big: 26
+      big: 23
     };
 
   } else if (width <= 768) {
