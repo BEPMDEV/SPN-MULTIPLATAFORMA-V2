@@ -36,12 +36,13 @@ const SidebarItem: React.FC<SidebarItemProps> = ({ item, textStyle, smallTextSty
         onPress={() => item.children ? setDropdown(!dropdown) : (active ? undefined : handlePress(item.route, active))}
         className="p-2.5 mt-3 justify-between items-center flex-row rounded-md px-4"
       >
-        <View className="flex-row items-center">
+        <View className="flex-row items-center max-w-full">
           <View className="w-[25px] items-center">
             {item.icon}
           </View>
           <Text style={textStyle} className="text-gray-200 ml-4 font-semiBold">{item.name}</Text>
         </View>
+
         {item.children && (
           <View className={`${!dropdown && 'rotate-180'}`}>
             <IconEntypo name="chevron-down" color={'white'} size={25} />
