@@ -1,43 +1,33 @@
-import React, { memo, useState } from 'react';
 import {
   ImageBackground,
   StyleSheet,
   KeyboardAvoidingView,
   View,
   Text,
-  ImageSourcePropType,
   Platform,
 } from 'react-native';
 import Logo from './Logo';
 import Header from './Header';
+
 import useResponsiveLayout from '@/hooks/useResponsiveLayout';
-import { useEffect } from 'react';
 import useResizeReload from '@/hooks/useResizeReload';
+import useFirstRender from '@/hooks/useFirstRender';
+
+const backgroundImage =  require('@/assets/images/login/background.jpg');
+const logo = require('@/assets/images/general/logo2.png')
 
 const isWeb = Platform.OS === 'web';
 
 const Background = ({ children }: { children: React.ReactNode }) => {
   const { containerWidth, height, display } = useResponsiveLayout();
-  const [backgroundImage, setBackgroundImage] = useState<ImageSourcePropType | null>()
-  const [logo, setLogo] = useState<ImageSourcePropType | null>()
-
   const size = useResizeReload(400)
 
-  useEffect(() => {
-    const imageBackground = async () => {
-      const image = await require('@/assets/images/login/background.jpg')
-      const logo = await require('@/assets/images/general/logo2.png')
-      setBackgroundImage(image)
-      setLogo(logo)
-    }
+  const isFirstRender = useFirstRender()
 
-    imageBackground()
-  }, []);
-
-  if (!backgroundImage || !logo) {
-    return null
+  if (isFirstRender) {
+    return null;
   }
-
+  
   return (
     <>
       <ImageBackground
@@ -115,4 +105,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default memo(Background);
+export default Background;

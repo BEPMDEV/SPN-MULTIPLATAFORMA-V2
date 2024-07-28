@@ -1,21 +1,11 @@
-import React, { memo } from 'react';
-import { Dimensions, Image, ImageSourcePropType, StyleSheet } from 'react-native';
-
-const { width } = Dimensions.get('window');
+import { Image, ImageSourcePropType } from 'react-native';
 
 interface Props {
   image: ImageSourcePropType
 }
 
-const Logo = ({image}: Props) => (
-  <Image source={image} style={styles.image} />
-);
+const Logo = ({image}: Props) => {
+  return <Image source={image} className='w-32 h-32' />
+}
 
-const styles = StyleSheet.create({
-  image: {
-    width: width <= 360 ? 120 : 128,
-    height: width <= 360 ? 120 : 128,
-  },
-});
-
-export default memo(Logo);
+export default Logo;

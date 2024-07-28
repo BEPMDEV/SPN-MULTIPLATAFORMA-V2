@@ -1,6 +1,5 @@
 import useAdaptiveFont from '@/hooks/useAdaptativeFont';
 import useResizeReload from '@/hooks/useResizeReload';
-import React, { memo } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { TextInput as Input } from 'react-native';
 
@@ -19,7 +18,6 @@ const TextInput = ({ errorText, ...props }: Props) => {
         placeholderTextColor={'#ff8c00'}
         {...props}
       />
-      {/* {errorText ? <Text style={styles.error}>{errorText}</Text> : null} */}
     </View>
   )
 };
@@ -30,17 +28,10 @@ const styles = StyleSheet.create({
     marginVertical: 12,
   },
   input: {
-    paddingHorizontal: 15, // Espaciado horizontal
+    paddingHorizontal: 15,
     paddingVertical: 18,
     borderRadius: 8
-  },
-
-  // error: {
-  //   fontSize: 14,
-  //   // color: theme.colors.error,
-  //   paddingHorizontal: 4,
-  //   paddingTop: 4,
-  // },
+  }
 });
 
-export default memo(TextInput);
+export default TextInput;

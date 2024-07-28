@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'expo-router';
-import { View, Text } from 'react-native';
 
 export default function Index() {
   const router = useRouter();
@@ -17,8 +16,6 @@ export default function Index() {
   }, [isReady, router]);
 
   return (
-    <View>
-      <Text>Redirigiendo...</Text>
-    </View>
+    null
   );
 }

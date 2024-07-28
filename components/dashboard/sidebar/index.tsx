@@ -3,8 +3,8 @@ import { View, Text, ScrollView, TextInput, Pressable } from 'react-native';
 import { SidebarGroup } from '@/types/dashboard/sidebar';
 import SidebarItem from './SidebarItem';
 import IconFeather from 'react-native-vector-icons/Feather';
-import IconEntypo from 'react-native-vector-icons/Entypo';
 import { Image } from 'react-native';
+const logo = require('@/assets/images/general/logo2.png')
 
 interface SidebarProps {
   data: SidebarGroup[];
@@ -29,11 +29,7 @@ const Sidebar: React.FC<SidebarProps> = ({ data, styles, sidebarOpen, setSidebar
         <View className="pr-2.5 items-center flex-row justify-between">
           <View className="flex-row items-center justify-center">
 
-            {/* <View className="px-2 py-1 bg-blue-600 rounded-md">
-              <IconEntypo name="notification" color={'white'} size={25} />
-            </View> */}
-
-            <Image className='w-20 h-20' source={require('@/assets/images/general/logo2.png')}/>
+            <Image className='w-20 h-20' source={logo}/>
             
             <Text style={{ fontSize: title }} className="text-gray-200 ml-3 font-bold">SPNG</Text>
             
