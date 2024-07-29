@@ -69,9 +69,10 @@ const DashboardLayout: React.FC = () => {
               <View className='px-5 py-4'>
                   <Text style={{fontSize: 16}} className='text-gray-500'>Notificaciones</Text>
               </View>
-
-              <ScrollView>
+              
               <View style={{ borderBottomWidth: 1 }} className='w-full border-gray-800'></View>
+              
+              <ScrollView>
 
                 <ViewHover onHoverInColor='bg-gray-800' active={false} className='px-5 py-4'>
                   <Text className='text-white font-semiBold'>Notificación de Parto</Text>
