@@ -23,7 +23,33 @@ import sidebarData from '@/components/dashboard/sidebar/sidebarData'
 import TextHover from '@/components/dashboard/sidebar/TextHover'
 import ViewHover from '@/components/dashboard/sidebar/ViewHover'
 
-const isMobile = Platform.OS === 'android' || Platform.OS === 'ios'
+import {
+	SafeAreaProvider,
+	useSafeAreaInsets,
+} from 'react-native-safe-area-context'
+
+interface PropsCustomBar {
+	backgroundColor: any
+	barStyle?: any
+}
+
+const CustomStatusBar = ({
+	backgroundColor,
+	barStyle = 'ligth-content',
+}: PropsCustomBar) => {
+	const insets = useSafeAreaInsets()
+	return (
+		<View style={{ height: insets.top, backgroundColor }}>
+			<StatusBarNative
+				animated={true}
+				backgroundColor={backgroundColor}
+				barStyle={barStyle}
+			/>
+		</View>
+	)
+}
+
+const isMobile = Platform.OS === 'android'
 
 const DashboardLayout: React.FC = () => {
 	const { height } = useResponsiveLayout()
@@ -36,10 +62,8 @@ const DashboardLayout: React.FC = () => {
 	const [notificationOpen, setNotificationOpen] = useState(false)
 
 	return (
-		<SafeAreaView
-			style={{ marginTop: isMobile ? StatusBarNative.currentHeight : 0 }}
-		>
-			<StatusBar style='light' backgroundColor='rgb(17 24 39)' />
+		<View>
+			<CustomStatusBar backgroundColor='rgb(17 24 39)' />
 
 			<View className='lg:flex-row'>
 				<Sidebar
@@ -331,7 +355,7 @@ const DashboardLayout: React.FC = () => {
 					</View>
 				</Pressable>
 			</View>
-		</SafeAreaView>
+		</View>
 	)
 }
 
