@@ -1,7 +1,7 @@
-import { Pressable, Text, View } from 'react-native'
-import { DataTable, IconButton } from 'react-native-paper'
-import IconEntypo from 'react-native-vector-icons/Entypo'
-import IconEntypos from 'react-native-vector-icons/FontAwesome'
+import { Pressable, Text, View } from 'react-native';
+import { DataTable, IconButton } from 'react-native-paper';
+import IconEntypo from 'react-native-vector-icons/Entypo';
+import IconEntypos from 'react-native-vector-icons/FontAwesome';
 export default function PermisosPage() {
 	const items = [
 		{
@@ -16,7 +16,7 @@ export default function PermisosPage() {
 			email: 'teo@gmail.com',
 			rol: 'usuario',
 		},
-	]
+	];
 
 	return (
 		<View className='p-2 place-self-center'>
@@ -41,7 +41,7 @@ export default function PermisosPage() {
 						<DataTable.Title> Acciones</DataTable.Title>
 					</DataTable.Header>
 					{items.map(item => (
-						<DataTable.Row className='bg-gray-700'>
+						<DataTable.Row key={item.id} className='bg-gray-700'>
 							<DataTable.Cell>{item.id}</DataTable.Cell>
 							<DataTable.Cell>{item.nombre}</DataTable.Cell>
 							<DataTable.Cell>{item.email}</DataTable.Cell>
@@ -65,5 +65,5 @@ export default function PermisosPage() {
 				</DataTable>
 			</View>
 		</View>
-	)
+	);
 }
