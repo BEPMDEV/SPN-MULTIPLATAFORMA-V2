@@ -1,7 +1,8 @@
-import { Pressable, Text, View } from 'react-native';
-import { DataTable, IconButton } from 'react-native-paper';
-import IconEntypo from 'react-native-vector-icons/Entypo';
-import IconEntypos from 'react-native-vector-icons/FontAwesome';
+import { Pressable, Text, View } from 'react-native'
+import { DataTable, IconButton } from 'react-native-paper'
+import IconEntypo from 'react-native-vector-icons/Entypo'
+import IconEntypos from 'react-native-vector-icons/FontAwesome'
+import IconActinos from 'react-native-vector-icons/MaterialCommunityIcons'
 export default function PermisosPage() {
 	const items = [
 		{
@@ -16,7 +17,7 @@ export default function PermisosPage() {
 			email: 'teo@gmail.com',
 			rol: 'usuario',
 		},
-	];
+	]
 
 	return (
 		<View className='p-2 place-self-center'>
@@ -47,23 +48,21 @@ export default function PermisosPage() {
 							<DataTable.Cell>{item.email}</DataTable.Cell>
 							<DataTable.Cell>{item.rol}</DataTable.Cell>
 							<DataTable.Cell>
-								<IconButton
-									icon='account-edit'
-									iconColor={'#57993a'}
-									size={25}
-									onPress={() => console.log('Pressed')}
-								/>
-								<IconButton
-									icon='delete'
-									iconColor={'red'}
-									size={25}
-									onPress={() => console.log('Pressed')}
-								/>
+								<Pressable className='p-1' onPress={() => console.log('Edit')}>
+									<IconActinos
+										name='account-edit'
+										color={'#57993a'}
+										size={25}
+									/>
+								</Pressable>
+								<Pressable className='p-1' onPress={() => console.log('edit')}>
+									<IconActinos name='delete' color={'red'} size={25} />
+								</Pressable>
 							</DataTable.Cell>
 						</DataTable.Row>
 					))}
 				</DataTable>
 			</View>
 		</View>
-	);
+	)
 }
