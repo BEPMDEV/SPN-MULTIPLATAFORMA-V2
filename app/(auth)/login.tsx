@@ -1,51 +1,90 @@
+import React, { useEffect, useState } from 'react';
 import Background from '@/components/login/Background';
-import { useState, useEffect } from 'react';
-import { Text } from 'react-native-paper';
 import TextInput from '@/components/login/TextInput';
-import { Pressable, StyleSheet } from 'react-native';
+import { Pressable, StyleSheet, Text, Keyboard, View } from 'react-native';
 import { ActivityIndicator } from 'react-native-paper';
-import { StatusBar } from 'expo-status-bar'
+import { StatusBar } from 'expo-status-bar';
 import useAdaptiveFont from '@/hooks/useAdaptativeFont';
+import { useAuth } from '@/hooks/useAuth';
+import Error from '@/components/login/Error';
+import { Errors } from '@/types/login/LoginErrors';
+import useAuthRedirect from '@/hooks/useAuthRedirect';
 import { useRouter } from 'expo-router';
+import useFirstRender from '@/hooks/useFirstRender';
+import { usePathname } from 'expo-router';
 
 const LoginPage = () => {
   const fontSizes = useAdaptiveFont();
+  const { login } = useAuth();
   const [loading, setLoading] = useState(false);
-  const router = useRouter();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [errors, setErrors] = useState<Errors>({});
+  const {isReady} = useAuthRedirect()
 
-  const handlePress = () => {
+  const handlePress = async () => {
+    Keyboard.dismiss();
     setLoading(true);
-  };
 
-  useEffect(() => {
-    if (loading) {
-      const timer = setTimeout(() => {
-        setLoading(false);
-        router.replace('/home');
-      }, 3000);
+    const errors = await login(email, password);
 
-      return () => clearTimeout(timer);
+    if (errors && errors.errors) {
+      setErrors(errors.errors);
+      setLoading(false);
+      return;
     }
-  }, [loading, router]);
 
+    if (errors && errors.unexpectedError) {
+      setErrors({ unexpectedError: [errors.unexpectedError] });
+      setLoading(false);
+      return;
+    }
+
+    if (errors && errors.messageError) {
+      setErrors({ notFound: [errors.messageError] });
+      setLoading(false);
+      return;
+    }
+
+    if (errors && errors.error) {
+      setErrors({ error: [errors.error] });
+      setLoading(false);
+      return;
+    }
+    setLoading(false);
+  }
+
+  if (!isReady) {
+    return null
+  }
+  
   return (
     <>
       <StatusBar style='light' />
       <Background>
+        {Object.keys(errors).map((field, i) => (
+          errors[field].map((error) => (
+            <View key={i} className={`${Object.keys(errors).length > 1 && i === 1 && 'mt-4'} w-full`}>
+              <Error>{error}</Error>
+            </View>
+          ))
+        ))}
         <TextInput
           placeholder="Ingrese Usuario"
           returnKeyType="next"
           autoCapitalize="none"
           textContentType="emailAddress"
           keyboardType="email-address"
+          value={email}
+          onChangeText={setEmail}
         />
-
         <TextInput
           placeholder="Ingrese Contraseña"
           returnKeyType="done"
           secureTextEntry
+          value={password}
+          onChangeText={setPassword}
         />
-
         <Pressable
           style={({ pressed }) => [
             styles.button,
@@ -62,7 +101,7 @@ const LoginPage = () => {
       </Background>
     </>
   );
-}
+};
 
 const styles = StyleSheet.create({
   button: {
@@ -74,7 +113,6 @@ const styles = StyleSheet.create({
     width: '100%',
     marginVertical: 12
   },
-
   buttonText: {
     color: '#fff',
     padding: 12,

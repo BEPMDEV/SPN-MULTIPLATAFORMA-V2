@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import {
 	View,
 	Platform,
@@ -9,35 +9,39 @@ import {
 	Image,
 	TouchableWithoutFeedback,
 	SafeAreaView,
-} from 'react-native'
-import IconEntypo from 'react-native-vector-icons/Entypo'
-import IconMaterialIcons from 'react-native-vector-icons/MaterialIcons'
-import IconFeather from 'react-native-vector-icons/Feather'
-import IconIonicons from 'react-native-vector-icons/Ionicons'
-import { StatusBar } from 'expo-status-bar'
-import { Slot, useRouter } from 'expo-router'
-import useAdaptiveFont from '@/hooks/useAdaptativeFont'
-import useResponsiveLayout from '@/hooks/useResponsiveLayout'
-import Sidebar from '@/components/dashboard/sidebar'
-import sidebarData from '@/components/dashboard/sidebar/sidebarData'
-import TextHover from '@/components/dashboard/sidebar/TextHover'
-import ViewHover from '@/components/dashboard/sidebar/ViewHover'
+} from 'react-native';
+import IconEntypo from 'react-native-vector-icons/Entypo';
+import IconMaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import IconFeather from 'react-native-vector-icons/Feather';
+import IconIonicons from 'react-native-vector-icons/Ionicons';
+import { StatusBar } from 'expo-status-bar';
+import { Slot, useRouter } from 'expo-router';
+import useAdaptiveFont from '@/hooks/useAdaptativeFont';
+import useResponsiveLayout from '@/hooks/useResponsiveLayout';
+import Sidebar from '@/components/dashboard/sidebar';
+import sidebarData from '@/components/dashboard/sidebar/sidebarData';
+import TextHover from '@/components/dashboard/sidebar/TextHover';
+import ViewHover from '@/components/dashboard/sidebar/ViewHover';
 
 import {
 	SafeAreaProvider,
 	useSafeAreaInsets,
-} from 'react-native-safe-area-context'
+} from 'react-native-safe-area-context';
+import useAuthRedirect from '@/hooks/useAuthRedirect';
+import useFirstRender from '@/hooks/useFirstRender';
+import { useAuthStore } from '@/zustand/store';
+import { useAuth } from '@/hooks/useAuth';
 
 interface PropsCustomBar {
-	backgroundColor: any
-	barStyle?: any
+	backgroundColor: any;
+	barStyle?: any;
 }
 
 const CustomStatusBar = ({
 	backgroundColor,
-	barStyle = 'ligth-content',
+	barStyle = 'light-content',
 }: PropsCustomBar) => {
-	const insets = useSafeAreaInsets()
+	const insets = useSafeAreaInsets();
 	return (
 		<View style={{ height: insets.top, backgroundColor }}>
 			<StatusBarNative
@@ -46,20 +50,31 @@ const CustomStatusBar = ({
 				barStyle={barStyle}
 			/>
 		</View>
-	)
-}
+	);
+};
 
-const isMobile = Platform.OS === 'android'
+const isMobile = Platform.OS === 'android';
 
 const DashboardLayout: React.FC = () => {
-	const { height } = useResponsiveLayout()
-	const { title, text, small, parrafo } = useAdaptiveFont()
+	const { height } = useResponsiveLayout();
+	const { title, text, small, parrafo } = useAdaptiveFont();
+	const router = useRouter();
 
-	const router = useRouter()
+	const [sidebarOpen, setSidebarOpen] = useState(false);
+	const [perfilOpen, setPerfilOpen] = useState(false);
+	const [notificationOpen, setNotificationOpen] = useState(false);
 
-	const [sidebarOpen, setSidebarOpen] = useState(false)
-	const [perfilOpen, setPerfilOpen] = useState(false)
-	const [notificationOpen, setNotificationOpen] = useState(false)
+	const { isReady } = useAuthRedirect();
+	const { logout } = useAuth()
+
+	const handleLogout = async () => {
+		await logout()
+		router.replace('/login')
+	}
+
+	if (!isReady) {
+		return null
+	}
 
 	return (
 		<View>
@@ -79,8 +94,8 @@ const DashboardLayout: React.FC = () => {
 					disabled={perfilOpen || notificationOpen ? false : true}
 					className='lg:w-3/4 xl:w-4/5'
 					onPress={() => {
-						setPerfilOpen(false)
-						setNotificationOpen(false)
+						setPerfilOpen(false);
+						setNotificationOpen(false);
 					}}
 				>
 					<View>
@@ -88,9 +103,9 @@ const DashboardLayout: React.FC = () => {
 							<Pressable
 								className='w-[50px] lg:hidden'
 								onPress={() => {
-									setSidebarOpen(true)
-									setPerfilOpen(false)
-									setNotificationOpen(false)
+									setSidebarOpen(true);
+									setPerfilOpen(false);
+									setNotificationOpen(false);
 								}}
 								style={{ cursor: 'pointer' }}
 							>
@@ -100,8 +115,8 @@ const DashboardLayout: React.FC = () => {
 							<View className='flex-row items-center gap-8'>
 								<Pressable
 									onPress={() => {
-										setNotificationOpen(!notificationOpen)
-										setPerfilOpen(false)
+										setNotificationOpen(!notificationOpen);
+										setPerfilOpen(false);
 									}}
 								>
 									<View className='p-2 bg-gray-800 rounded-full'>
@@ -131,8 +146,8 @@ const DashboardLayout: React.FC = () => {
 
 									<Pressable
 										onPress={() => {
-											setPerfilOpen(!perfilOpen)
-											setNotificationOpen(false)
+											setPerfilOpen(!perfilOpen);
+											setNotificationOpen(false);
 										}}
 										className='flex-row self-center items-center gap-3'
 									>
@@ -160,7 +175,7 @@ const DashboardLayout: React.FC = () => {
 								!notificationOpen && 'hidden'
 							}`}
 							onPress={() => {
-								setNotificationOpen(true)
+								setNotificationOpen(true);
 							}}
 						>
 							<View className='px-5 py-4'>
@@ -274,27 +289,6 @@ const DashboardLayout: React.FC = () => {
 										12 May, 2024
 									</Text>
 								</ViewHover>
-
-								<View
-									style={{ borderBottomWidth: 1 }}
-									className='w-full border-gray-800'
-								></View>
-
-								<ViewHover
-									onHoverInColor='bg-gray-800'
-									active={false}
-									className='px-5 py-4'
-								>
-									<Text className='text-white font-semiBold'>
-										Notificación de Parto
-									</Text>
-									<Text className=' text-gray-400 mb-2'>
-										La señora Maria debería estar dando a luz ahora.
-									</Text>
-									<Text style={{ fontSize: 12 }} className=' text-gray-400'>
-										12 May, 2024
-									</Text>
-								</ViewHover>
 							</ScrollView>
 						</Pressable>
 
@@ -302,7 +296,7 @@ const DashboardLayout: React.FC = () => {
 							style={{ cursor: 'auto' }}
 							android_disableSound
 							onPress={() => {
-								setPerfilOpen(true)
+								setPerfilOpen(true);
 							}}
 							className={`bg-gray-900 w-64 absolute z-[1] right-7 top-20 rounded-sm border border-gray-800 ${
 								!perfilOpen && 'hidden'
@@ -325,7 +319,7 @@ const DashboardLayout: React.FC = () => {
 
 							<View className='px-6 py-4'>
 								<TextHover
-									onPress={() => router.replace('/login')}
+									onPress={() => handleLogout()}
 									Icon={IconMaterialIcons}
 									name='logout'
 									className='flex-row items-center max-w-full'
@@ -356,7 +350,7 @@ const DashboardLayout: React.FC = () => {
 				</Pressable>
 			</View>
 		</View>
-	)
-}
+	);
+};
 
-export default DashboardLayout
+export default DashboardLayout;

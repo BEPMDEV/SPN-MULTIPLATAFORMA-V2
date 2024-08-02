@@ -22,10 +22,10 @@ const Background = ({ children }: { children: React.ReactNode }) => {
   const { containerWidth, height, display } = useResponsiveLayout();
   const size = useResizeReload(400)
 
-  const isFirstRender = useFirstRender()
-
-  if (isFirstRender) {
-    return null;
+  const firstRender = useFirstRender();
+  
+  if (firstRender) {
+    return null
   }
   
   return (
