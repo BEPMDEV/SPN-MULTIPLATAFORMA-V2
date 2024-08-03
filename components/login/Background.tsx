@@ -10,9 +10,9 @@ import Logo from './Logo';
 import Header from './Header';
 import { Colors } from '@/constants/Colors';
 
-import useResponsiveLayout from '@/hooks/useResponsiveLayout';
-import useResizeReload from '@/hooks/useResizeReload';
-import useFirstRender from '@/hooks/useFirstRender';
+import useResponsiveLayout from '@/hooks/general/useResponsiveLayout';
+import useResizeReload from '@/hooks/general/useResizeReload';
+import useFirstRender from '@/hooks/general/useFirstRender';
 
 const backgroundImage =  require('@/assets/images/login/background.jpg');
 const logo = require('@/assets/images/general/logo.png')

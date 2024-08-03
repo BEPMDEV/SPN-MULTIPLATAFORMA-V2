@@ -27,6 +27,7 @@ export default function Index() {
       if (!(await getToken())) {
         router.replace('/login')
       }
+
     }
     redirect()
 

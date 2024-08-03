@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text } from 'react-native';
 import { SidebarItem as SidebarItemType } from '@/types/dashboard/sidebar';
-import ViewHover from '@/components/dashboard/sidebar/ViewHover';
+import ViewHover from '@/components/dashboard/general/ViewHover';
 import IconEntypo from 'react-native-vector-icons/Entypo';
 import { usePathname, useRouter } from 'expo-router';
 
@@ -27,7 +27,7 @@ const SidebarItem: React.FC<SidebarItemProps> = ({ item, textStyle, smallTextSty
     if (isActive) {
       return;
     }
-    router.push(route);
+    router.push(route as any);
     setSidebarOpen(false)
   };
 

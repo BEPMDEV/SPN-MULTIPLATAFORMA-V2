@@ -1,6 +1,6 @@
 import IconMaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import { View, Text } from 'react-native'
-import useAdaptiveFont from '@/hooks/useAdaptativeFont';
+import useAdaptiveFont from '@/hooks/general/useAdaptativeFont';
 interface Props {
     children: React.ReactNode;
 }

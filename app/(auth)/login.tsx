@@ -1,24 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import Background from '@/components/login/Background';
 import TextInput from '@/components/login/TextInput';
-import { Pressable, StyleSheet, Text, Keyboard, View, Platform } from 'react-native';
-import { ActivityIndicator } from 'react-native-paper';
+import { Keyboard, View, Platform } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
-import useAdaptiveFont from '@/hooks/useAdaptativeFont';
-import { useAuth } from '@/hooks/useAuth';
+import { useAuth } from '@/hooks/auth/useAuth';
 import Error from '@/components/login/Error';
 import { Errors } from '@/types/login/LoginErrors';
-import useAuthRedirect from '@/hooks/useAuthRedirect';
-import { Colors } from '@/constants/Colors';
+import useAuthRedirect from '@/hooks/auth/useAuthRedirect';
+import { ButtonLogin } from '@/components/login/ButtonLogin';
 
 const LoginPage = () => {
-  const fontSizes = useAdaptiveFont();
   const { login } = useAuth();
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState<Errors>({});
-  const {isReady} = useAuthRedirect();
+  const { isReady } = useAuthRedirect();
 
   useEffect(() => {
     if (Platform.OS === 'ios' || Platform.OS === 'android') {
@@ -41,7 +38,7 @@ const LoginPage = () => {
     if (errors && errors.errors) {
       setErrors(errors.errors);
       setLoading(false);
-      setTimeout(()=> {
+      setTimeout(() => {
         setErrors({})
       }, 4000)
       return;
@@ -50,7 +47,7 @@ const LoginPage = () => {
     if (errors && errors.unexpectedError) {
       setErrors({ unexpectedError: [errors.unexpectedError] });
       setLoading(false);
-      setTimeout(()=> {
+      setTimeout(() => {
         setErrors({})
       }, 4000)
       return;
@@ -59,7 +56,7 @@ const LoginPage = () => {
     if (errors && errors.messageError) {
       setErrors({ notFound: [errors.messageError] });
       setLoading(false);
-      setTimeout(()=> {
+      setTimeout(() => {
         setErrors({})
       }, 4000)
       return;
@@ -68,7 +65,7 @@ const LoginPage = () => {
     if (errors && errors.error) {
       setErrors({ error: [errors.error] });
       setLoading(false);
-      setTimeout(()=> {
+      setTimeout(() => {
         setErrors({})
       }, 4000)
       return;
@@ -77,9 +74,9 @@ const LoginPage = () => {
   }
 
   if (!isReady) {
-    return 	(
-			<View className='h-full w-full absolute bg-gray-950'></View>
-		)
+    return (
+      <View className='h-full w-full absolute bg-gray-950'></View>
+    )
   }
 
   return (
@@ -109,39 +106,12 @@ const LoginPage = () => {
           value={password}
           onChangeText={setPassword}
         />
-        <Pressable
-          style={({ pressed }) => [
-            styles.button,
-            { backgroundColor: pressed ? Colors.buttonPressed : Colors.button }
-          ]}
 
-          onPress={handlePress}
-        >
-          {loading ? (
-            <ActivityIndicator size={55} color={Colors.buttonText} />
-          ) : (
-            <Text className='font-bold' style={[styles.buttonText, { fontSize: fontSizes.buttonText }]}>INICIAR SESIÓN</Text>
-          )}
-        </Pressable>
+        <ButtonLogin handlePress={handlePress} loading={loading} />
+
       </Background>
     </>
   );
 };
-
-const styles = StyleSheet.create({
-  button: {
-    paddingVertical: 8,
-    paddingHorizontal: 24,
-    borderRadius: 20,
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: '100%',
-    marginVertical: 12
-  },
-  buttonText: {
-    color: Colors.buttonText,
-    padding: 12,
-  },
-});
 
 export default LoginPage;

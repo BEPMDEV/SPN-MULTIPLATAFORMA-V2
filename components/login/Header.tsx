@@ -1,4 +1,4 @@
-import useAdaptiveFont from '@/hooks/useAdaptativeFont';
+import useAdaptiveFont from '@/hooks/general/useAdaptativeFont';
 import React, { memo } from 'react';
 import { StyleSheet, Text } from 'react-native';
 

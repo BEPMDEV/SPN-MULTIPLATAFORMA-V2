@@ -1,5 +1,5 @@
-import useAdaptiveFont from '@/hooks/useAdaptativeFont';
-import useResizeReload from '@/hooks/useResizeReload';
+import useAdaptiveFont from '@/hooks/general/useAdaptativeFont';
+import useResizeReload from '@/hooks/general/useResizeReload';
 import { View, StyleSheet } from 'react-native';
 import { TextInput as Input } from 'react-native';
 import { Colors } from '@/constants/Colors';
