@@ -8,13 +8,14 @@ import {
 } from 'react-native';
 import Logo from './Logo';
 import Header from './Header';
+import { Colors } from '@/constants/Colors';
 
 import useResponsiveLayout from '@/hooks/useResponsiveLayout';
 import useResizeReload from '@/hooks/useResizeReload';
 import useFirstRender from '@/hooks/useFirstRender';
 
 const backgroundImage =  require('@/assets/images/login/background.jpg');
-const logo = require('@/assets/images/general/logo2.png')
+const logo = require('@/assets/images/general/logo.png')
 
 const isWeb = Platform.OS === 'web';
 
@@ -35,26 +36,26 @@ const Background = ({ children }: { children: React.ReactNode }) => {
         resizeMode="cover"
         style={[isWeb? { height: height } : { flex: 1 }, styles.background, { display: display === 'none' ? 'flex' : 'none' }]}
       >
-        <View style={[isWeb && { height: height }, styles.overlay]} />
+        <View style={[isWeb && { height: height }, styles.overlay]}/>
 
         <KeyboardAvoidingView style={[styles.container, { width: containerWidth as any }]}>
           {
             size && <Logo image={logo}/>
           }
-          <Header>Sistema de Padrón Nominal de Gestantes</Header>
+          <Header>SISGEMA</Header>
           {children}
         </KeyboardAvoidingView>
 
       </ImageBackground>
 
-      <View style={{ backgroundColor: '#FFF7ED', flexDirection: 'row', display: display === 'none' ? 'none' : 'flex' }}>
+      <View style={{ backgroundColor: Colors.backgroundColor, flexDirection: 'row', display: display === 'none' ? 'none' : 'flex' }}>
         <View style={styles.containerWeb}>
           <ImageBackground
             source={backgroundImage}
             resizeMode="cover"
             style={[isWeb && { height: height }, styles.backgroundAdaptative]}
           >
-            <Text style={styles.text}>SISTEMA DE PADRÓN NOMINAL DE GESTANTES</Text>
+            <Text style={styles.text}>SISGEMA</Text>
             <View style={[isWeb && { height: height }, styles.overlay]} />
           </ImageBackground>
         </View>
@@ -77,7 +78,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: 'white',
     fontWeight: 'bold',
-    fontSize: 40,
+    fontSize: 80,
   },
   containerWeb: {
     width: '50%',
@@ -90,8 +91,8 @@ const styles = StyleSheet.create({
   },
   overlay: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: '#290b03' ,
-    opacity: 0.5,
+    backgroundColor: Colors.backgroundOpacityColor ,
+    opacity: isWeb? 0.5 : 0.6
   },
   container: {
     flex: 1,

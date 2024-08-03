@@ -34,7 +34,7 @@ const Sidebar: React.FC<SidebarProps> = ({ data, styles, sidebarOpen, setSidebar
 
               <Image className='w-20 h-20' source={logo} />
 
-              <Text style={{ fontSize: title }} className="text-gray-200 ml-3 font-bold">SPNG</Text>
+              <Text style={{ fontSize: title }} className="text-gray-200 ml-3 font-bold">SISGEMA</Text>
 
             </View>
             <Pressable onPress={() => { setSidebarOpen(false); }} style={{ cursor: 'pointer' }} className=" lg:hidden">

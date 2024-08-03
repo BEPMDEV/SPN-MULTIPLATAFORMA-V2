@@ -2,6 +2,7 @@ import useAdaptiveFont from '@/hooks/useAdaptativeFont';
 import useResizeReload from '@/hooks/useResizeReload';
 import { View, StyleSheet } from 'react-native';
 import { TextInput as Input } from 'react-native';
+import { Colors } from '@/constants/Colors';
 
 type Props = React.ComponentProps<typeof Input> & { errorText?: string };
 
@@ -14,8 +15,8 @@ const TextInput = ({ errorText, ...props }: Props) => {
     <View style={styles.container}>
       <Input
        className='font-regular'
-        style={[styles.input, { fontSize: fontSizes.text, backgroundColor: isWidthReached? 'transparent' : 'white', borderColor: isWidthReached? '#ff8c00' : undefined, borderWidth: isWidthReached? 2 : undefined }]}
-        placeholderTextColor={'#ff8c00'}
+        style={[styles.input, { fontSize: fontSizes.text, backgroundColor: isWidthReached? 'transparent' : Colors.inputLoginBackgroundColor, borderColor: isWidthReached? Colors.inputLogin : undefined, borderWidth: isWidthReached? 2 : undefined }]}
+        placeholderTextColor={Colors.inputLogin}
         {...props}
       />
     </View>

@@ -4,7 +4,7 @@ import { storeToken, clearToken } from '@/utils/storageUtils'; // Asegúrate de 
 import { LoginResponse } from '@/types/login/loginResponse';
 import { MyAxiosError } from '@/types/login/LoginErrors';
 
-const API_URL = 'http://127.0.0.1:8000/api';
+const API_URL = 'http://192.168.193.227:8000/api';
 
 // Custom Hook para autenticación
 export function useAuth() {

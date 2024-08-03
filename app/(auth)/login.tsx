@@ -9,6 +9,7 @@ import { useAuth } from '@/hooks/useAuth';
 import Error from '@/components/login/Error';
 import { Errors } from '@/types/login/LoginErrors';
 import useAuthRedirect from '@/hooks/useAuthRedirect';
+import { Colors } from '@/constants/Colors';
 
 const LoginPage = () => {
   const fontSizes = useAdaptiveFont();
@@ -109,12 +110,13 @@ const LoginPage = () => {
         <Pressable
           style={({ pressed }) => [
             styles.button,
-            { backgroundColor: pressed ? '#D85D0A' : '#EA580C' }
+            { backgroundColor: pressed ? Colors.buttonPressed : Colors.button }
           ]}
+
           onPress={handlePress}
         >
           {loading ? (
-            <ActivityIndicator size={55} color="#fff" />
+            <ActivityIndicator size={55} color={Colors.buttonText} />
           ) : (
             <Text className='font-bold' style={[styles.buttonText, { fontSize: fontSizes.buttonText }]}>INICIAR SESIÓN</Text>
           )}
@@ -135,7 +137,7 @@ const styles = StyleSheet.create({
     marginVertical: 12
   },
   buttonText: {
-    color: '#fff',
+    color: Colors.buttonText,
     padding: 12,
   },
 });

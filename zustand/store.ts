@@ -3,7 +3,7 @@ import axios from 'axios';
 import { User } from '@/types/login/loginResponse';
 import { getToken } from '@/utils/storageUtils';
 
-const API_URL = 'http://127.0.0.1:8000/api'; // Ajusta la URL según tu configuración
+const API_URL = 'http://192.168.193.227:8000/api'; // Ajusta la URL según tu configuración
 
 const checkAuth = async (): Promise<User | null> => {
     const token = await getToken();
