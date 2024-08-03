@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Background from '@/components/login/Background';
 import TextInput from '@/components/login/TextInput';
-import { Pressable, StyleSheet, Text, Keyboard, View } from 'react-native';
+import { Pressable, StyleSheet, Text, Keyboard, View, Platform } from 'react-native';
 import { ActivityIndicator } from 'react-native-paper';
 import { StatusBar } from 'expo-status-bar';
 import useAdaptiveFont from '@/hooks/useAdaptativeFont';
@@ -9,9 +9,6 @@ import { useAuth } from '@/hooks/useAuth';
 import Error from '@/components/login/Error';
 import { Errors } from '@/types/login/LoginErrors';
 import useAuthRedirect from '@/hooks/useAuthRedirect';
-import { useRouter } from 'expo-router';
-import useFirstRender from '@/hooks/useFirstRender';
-import { usePathname } from 'expo-router';
 
 const LoginPage = () => {
   const fontSizes = useAdaptiveFont();
@@ -20,7 +17,19 @@ const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState<Errors>({});
-  const {isReady} = useAuthRedirect()
+  const {isReady} = useAuthRedirect();
+
+  useEffect(() => {
+    if (Platform.OS === 'ios' || Platform.OS === 'android') {
+      const keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', () => {
+        setErrors({});
+      });
+
+      return () => {
+        keyboardDidShowListener.remove();
+      };
+    }
+  }, []);
 
   const handlePress = async () => {
     Keyboard.dismiss();
@@ -31,33 +40,45 @@ const LoginPage = () => {
     if (errors && errors.errors) {
       setErrors(errors.errors);
       setLoading(false);
+      setTimeout(()=> {
+        setErrors({})
+      }, 4000)
       return;
     }
 
     if (errors && errors.unexpectedError) {
       setErrors({ unexpectedError: [errors.unexpectedError] });
       setLoading(false);
+      setTimeout(()=> {
+        setErrors({})
+      }, 4000)
       return;
     }
 
     if (errors && errors.messageError) {
       setErrors({ notFound: [errors.messageError] });
       setLoading(false);
+      setTimeout(()=> {
+        setErrors({})
+      }, 4000)
       return;
     }
 
     if (errors && errors.error) {
       setErrors({ error: [errors.error] });
       setLoading(false);
+      setTimeout(()=> {
+        setErrors({})
+      }, 4000)
       return;
     }
     setLoading(false);
   }
 
   if (!isReady) {
-    return null
+    return null;
   }
-  
+
   return (
     <>
       <StatusBar style='light' />
