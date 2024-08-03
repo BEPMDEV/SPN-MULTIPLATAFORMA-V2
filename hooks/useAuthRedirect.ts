@@ -36,7 +36,6 @@ const useAuthRedirect = () => {
                 }
     
                 if (pathname !== '/login') {
-                    router.replace(pathname as any);
                     return
                 }
     

@@ -7,14 +7,11 @@ import {
 	ScrollView,
 	Text,
 	Image,
-	TouchableWithoutFeedback,
-	SafeAreaView,
 } from 'react-native';
 import IconEntypo from 'react-native-vector-icons/Entypo';
 import IconMaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import IconFeather from 'react-native-vector-icons/Feather';
 import IconIonicons from 'react-native-vector-icons/Ionicons';
-import { StatusBar } from 'expo-status-bar';
 import { Slot, useRouter } from 'expo-router';
 import useAdaptiveFont from '@/hooks/useAdaptativeFont';
 import useResponsiveLayout from '@/hooks/useResponsiveLayout';
@@ -24,12 +21,9 @@ import TextHover from '@/components/dashboard/sidebar/TextHover';
 import ViewHover from '@/components/dashboard/sidebar/ViewHover';
 
 import {
-	SafeAreaProvider,
 	useSafeAreaInsets,
 } from 'react-native-safe-area-context';
 import useAuthRedirect from '@/hooks/useAuthRedirect';
-import useFirstRender from '@/hooks/useFirstRender';
-import { useAuthStore } from '@/zustand/store';
 import { useAuth } from '@/hooks/useAuth';
 
 interface PropsCustomBar {
@@ -73,9 +67,11 @@ const DashboardLayout: React.FC = () => {
 	}
 
 	if (!isReady) {
-		return null
+		return 	(
+			<View className='h-full w-full absolute bg-gray-950'></View>
+		)
 	}
-
+	
 	return (
 		<View>
 			<CustomStatusBar backgroundColor='rgb(17 24 39)' />

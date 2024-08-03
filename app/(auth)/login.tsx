@@ -77,7 +77,9 @@ const LoginPage = () => {
   }
 
   if (!isReady) {
-    return null;
+    return 	(
+			<View className='h-full w-full absolute bg-gray-950'></View>
+		)
   }
 
   return (
