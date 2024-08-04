@@ -14,13 +14,13 @@ export const ButtonLogin = ({handlePress, loading}: Props) => {
         <Pressable
             style={({ pressed }) => [
                 styles.button,
-                { backgroundColor: pressed ? Colors.buttonPressed : Colors.button }
+                { backgroundColor: pressed ? Colors.buttonPressed : Colors.mainColor }
             ]}
 
             onPress={handlePress}
         >
             {loading ? (
-                <ActivityIndicator size={55} color={Colors.buttonText} />
+                <ActivityIndicator size={55} color={Colors.white} />
             ) : (
                 <Text className='font-bold' style={[styles.buttonText, { fontSize: fontSizes.buttonText }]}>INICIAR SESIÓN</Text>
             )}
@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
       marginVertical: 12
     },
     buttonText: {
-      color: Colors.buttonText,
+      color: Colors.white,
       padding: 12,
     },
   });

@@ -1,3 +1,4 @@
+import { Colors } from "@/constants/Colors";
 import { useState } from "react";
 import { Pressable, Text, View } from "react-native";
 
@@ -11,7 +12,7 @@ type Props = React.ComponentProps<typeof Pressable> & {
 
 export default function TextHover({
   children,
-  onHoverInColor = 'rgb(37 99 235)',
+  onHoverInColor = '#8d2c49',
   Icon,
   size = 25,
   name,
@@ -29,9 +30,9 @@ export default function TextHover({
       {...props}
     >
       <View style={{ width: size, alignItems: 'center' }}>
-        <Icon color={hover || pressed ? onHoverInColor : 'white'} name={name} size={size}/>
+        <Icon color={hover || pressed ? onHoverInColor : Colors.white} name={name} size={size}/>
       </View>
-      <Text style={{ color: hover || pressed ? onHoverInColor : 'rgb(229 231 235)' }} className="ml-4 font-regular">
+      <Text style={{ color: hover || pressed ? onHoverInColor : Colors.light }} className="ml-4 font-regular">
         {children}
       </Text>
     </Pressable>

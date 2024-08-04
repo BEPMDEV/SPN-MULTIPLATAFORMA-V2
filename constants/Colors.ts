@@ -1,10 +1,16 @@
 
 export const Colors = {
-  button: '#db2777',
-  buttonPressed: '#be185d',
-  buttonText: '#fff',
-  inputLogin: '#db2777',
-  inputLoginBackgroundColor: '#fff',
-  backgroundColor: '#FDF2F8',
-  backgroundOpacityColor: '#140108'
+  mainColor: '#d14b75',
+  buttonPressed: '#c04168',
+  backgroundColor: '#fff',
+
+  //siempre son colores de los textos
+  dark: '#000',
+  light: '#fff',
+  semiLight: '#FBDCEE',
+  subTitleDark: '#8b2d4d',
+
+  //Siempre son colores de los iconos
+  white: '#fff',
+  black: '#000'
 };

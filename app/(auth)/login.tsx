@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Background from '@/components/login/Background';
-import TextInput from '@/components/login/TextInput';
+import TextInputs from '@/components/login/TextInputs';
 import { Keyboard, View, Platform } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { useAuth } from '@/hooks/auth/useAuth';
@@ -8,6 +8,8 @@ import Error from '@/components/login/Error';
 import { Errors } from '@/types/login/LoginErrors';
 import useAuthRedirect from '@/hooks/auth/useAuthRedirect';
 import { ButtonLogin } from '@/components/login/ButtonLogin';
+import { CustomStatusBar } from '@/components/dashboard/general/CustomStatusBar';
+import { Colors } from '@/constants/Colors';
 
 const LoginPage = () => {
   const { login } = useAuth();
@@ -28,6 +30,14 @@ const LoginPage = () => {
       };
     }
   }, []);
+
+  const onSetEmail = (email: string) => {
+    setEmail(email)
+  }
+
+  const onSetPassword = (password: string) => {
+    setPassword(password)
+  }
 
   const handlePress = async () => {
     Keyboard.dismiss();
@@ -75,13 +85,13 @@ const LoginPage = () => {
 
   if (!isReady) {
     return (
-      <View className='h-full w-full absolute bg-gray-950'></View>
+      <View className='h-full w-full absolute bg-white'></View>
     )
   }
 
   return (
     <>
-      <StatusBar style='light' />
+      <CustomStatusBar backgroundColor={Colors.mainColor}/>
       <Background>
         {Object.keys(errors).map((field, i) => (
           errors[field].map((error) => (
@@ -90,25 +100,8 @@ const LoginPage = () => {
             </View>
           ))
         ))}
-        <TextInput
-          placeholder="Ingrese Usuario"
-          returnKeyType="next"
-          autoCapitalize="none"
-          textContentType="emailAddress"
-          keyboardType="email-address"
-          value={email}
-          onChangeText={setEmail}
-        />
-        <TextInput
-          placeholder="Ingrese Contraseña"
-          returnKeyType="done"
-          secureTextEntry
-          value={password}
-          onChangeText={setPassword}
-        />
-
+        <TextInputs email={email} password={password} onSetEmail={onSetEmail} onSetPassword={onSetPassword}/>
         <ButtonLogin handlePress={handlePress} loading={loading} />
-
       </Background>
     </>
   );

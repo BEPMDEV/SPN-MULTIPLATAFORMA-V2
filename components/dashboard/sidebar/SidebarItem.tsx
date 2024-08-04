@@ -4,6 +4,7 @@ import { SidebarItem as SidebarItemType } from '@/types/dashboard/sidebar';
 import ViewHover from '@/components/dashboard/general/ViewHover';
 import IconEntypo from 'react-native-vector-icons/Entypo';
 import { usePathname, useRouter } from 'expo-router';
+import { Colors } from '@/constants/Colors';
 
 interface SidebarItemProps {
   item: SidebarItemType;
@@ -42,12 +43,12 @@ const SidebarItem: React.FC<SidebarItemProps> = ({ item, textStyle, smallTextSty
           <View className="w-[25px] items-center">
             {item.icon}
           </View>
-          <Text style={textStyle} className="text-gray-200 ml-4 font-semiBold">{item.name}</Text>
+          <Text style={[ {color: Colors.light }, textStyle]} className="ml-4 font-semiBold">{item.name}</Text>
         </View>
 
         {item.children && (
           <View className={`${!dropdown && 'rotate-180'}`}>
-            <IconEntypo name="chevron-down" color={'white'} size={25} />
+            <IconEntypo name="chevron-down" color={Colors.white} size={25} />
           </View>
         )}
       </ViewHover>
@@ -61,11 +62,11 @@ const SidebarItem: React.FC<SidebarItemProps> = ({ item, textStyle, smallTextSty
                 onPress={() => activeChild ? undefined : handlePress(child.route, activeChild)}
                 active={activeChild}
                 key={index}
-                onHoverInColor="bg-gray-700"
+                onHoverInColor="bg-customPink2"
                 style={{ cursor: 'pointer' }}
                 className="p-2 rounded-md mt-1"
               >
-                <Text style={smallTextStyle} className="text-gray-200 text-left font-regular">{child.name}</Text>
+                <Text style={[smallTextStyle, {color: Colors.semiLight}]} className="text-left font-regular">{child.name}</Text>
               </ViewHover>
             );
           })}

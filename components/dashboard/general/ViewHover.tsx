@@ -8,7 +8,7 @@ type Props = React.ComponentProps<typeof Pressable> &
   active: boolean;
 };
 
-export default function ViewHover({ children, onHoverInColor = 'bg-blue-600', active, ...props }: Props) {
+export default function ViewHover({ children, onHoverInColor = 'bg-customPink', active, ...props }: Props) {
 
   const [hover, setHover] = useState(false)
   const [pressed, setPressed] = useState(false)

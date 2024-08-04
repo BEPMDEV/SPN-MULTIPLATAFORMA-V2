@@ -12,6 +12,7 @@ import Notifications from '@/components/dashboard/header/Notifications';
 import ProfileMenu from '@/components/dashboard/header/ProfileMenu';
 import TopBar from '@/components/dashboard/header/TopBar';
 import MainContent from '@/components/dashboard/MainContent';
+import { Colors } from '@/constants/Colors';
 
 const DashboardLayout: React.FC = () => {
     const { height } = useResponsiveLayout();
@@ -31,12 +32,12 @@ const DashboardLayout: React.FC = () => {
     };
 
     if (!isReady) {
-        return <View className='h-full w-full absolute bg-gray-950'></View>;
+        return <View className='h-full w-full absolute bg-white'></View>;
     }
 
     return (
         <View>
-            <CustomStatusBar backgroundColor='rgb(17 24 39)' />
+            <CustomStatusBar backgroundColor={Colors.mainColor} />
 
             <View className='lg:flex-row'>
                 <Sidebar data={sidebarData} styles={{ height, title, text, small, parrafo }} sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />

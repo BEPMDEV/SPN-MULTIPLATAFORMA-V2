@@ -3,7 +3,7 @@ import { Text } from "react-native";
 const HomePage = () => {
     return(
         
-        <Text className="text-white">Home</Text>
+        <Text>Home</Text>
     )
 };
 

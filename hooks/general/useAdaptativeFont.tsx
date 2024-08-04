@@ -29,7 +29,7 @@ const getFontSizes = () => {
       title: 22, //
       text: 14, //
       small: 13,
-      big: 23
+      big: 36
     };
 
   } else if (width <= 768) {
@@ -39,7 +39,7 @@ const getFontSizes = () => {
       title: 24, //28
       text: 16, //
       small: 15,
-      big: 28
+      big: 38
     };
 
   } else if (width <= 1024) {
@@ -50,7 +50,7 @@ const getFontSizes = () => {
       title: 26, //
       text: 18,//
       small: 17,
-      big: 30
+      big: 40
     };
 
   } else {
@@ -61,7 +61,7 @@ const getFontSizes = () => {
         title: 28, //
         text: 20,//
         small: 19,
-        big: 31
+        big: 42
       };
   }
 

@@ -9,7 +9,7 @@ export default function Error({children}: Props) {
     const fontSizes = useAdaptiveFont();
 
     return (
-        <View className='bg-red-600 p-5 w-full rounded-md flex-row items-center justify-center'>
+        <View className='bg-red-700 p-5 w-full rounded-md flex-row items-center justify-center'>
             <View className='w-5 mr-4'>
                 <IconMaterialIcons name='error' color={'white'} size={20} />
             </View>

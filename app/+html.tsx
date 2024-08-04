@@ -58,7 +58,7 @@ body {
   background-color: #fff;
 }
 
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: ligth) {
   body {
     background-color: rgb(3 7 18);
   }
