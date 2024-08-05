@@ -1,7 +1,8 @@
 import { useRouter } from 'expo-router';
 import React, { useState } from 'react';
 import { View, StyleSheet } from 'react-native';
-import { TextInput, Button, Text, RadioButton, Switch, Provider as PaperProvider, ActivityIndicator, List } from 'react-native-paper';
+import { TextInput, Button, Text, Switch, Provider as PaperProvider, ActivityIndicator, List } from 'react-native-paper';
+import { useAuthStore } from '@/zustand/store';
 
 const Form = () => {
     const [tipoDocumento, setTipoDocumento] = useState('');
@@ -18,6 +19,8 @@ const Form = () => {
     const [FUR, setFUR] = useState('');
     const [fechaProbableParto, setFechaProbableParto] = useState('');
     const [expanded, setExpanded] = useState(false);
+    const setFormData = useAuthStore((state) => state.addFormData);
+    const router = useRouter();
 
     const handleSearch = () => {
         setIsLoading(true);
@@ -27,11 +30,8 @@ const Form = () => {
         }, 3000);
     };
 
-    const router = useRouter();
-
     const handleSubmit = () => {
-
-        console.log({
+        const formData = {
             tipoDocumento,
             numeroDocumento,
             nombre,
@@ -43,9 +43,11 @@ const Form = () => {
             estaEmbarazada,
             FUR,
             fechaProbableParto,
-        });
+        };
 
-        router.replace('/mer')
+        setFormData(formData);
+
+        router.replace('/mer');
     };
 
     return (
