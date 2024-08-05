@@ -9,15 +9,15 @@ import { Colors } from '@/constants/Colors';
 const ProfileMenu: React.FC<{ perfilOpen: boolean, setPerfilOpen: (open: boolean) => void, handleLogout: () => void }> = ({ perfilOpen, setPerfilOpen, handleLogout }) => {
     return (
         <Pressable
-            style={{ cursor: 'auto', backgroundColor: Colors.mainColor }}
+            style={{ cursor: 'auto', backgroundColor: Colors.white }}
             android_disableSound
             onPress={() => setPerfilOpen(true)}
-            className={`w-64 absolute z-[1] right-7 top-20 rounded-sm border border-customPink ${!perfilOpen && 'hidden'}`}
+            className={`w-64 absolute z-[1] right-7 top-20 rounded-sm ${!perfilOpen && 'hidden'}`}
         >
             <View className='px-6 py-7'>
                 <TextHover Icon={IconFeather} name='settings' className='flex-row items-center max-w-full'>Ajustes</TextHover>
             </View>
-            <View style={{ borderBottomWidth: 1 }} className='w-full border-customPink'></View>
+            <View style={{ borderBottomWidth: 1 }} className='w-full border-gray-300'></View>
             <View className='px-6 py-4'>
                 <TextHover onPress={handleLogout} Icon={IconMaterialIcons} name='logout' className='flex-row items-center max-w-full'>Log Out</TextHover>
             </View>

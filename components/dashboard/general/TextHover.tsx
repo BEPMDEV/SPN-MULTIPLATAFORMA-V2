@@ -12,7 +12,7 @@ type Props = React.ComponentProps<typeof Pressable> & {
 
 export default function TextHover({
   children,
-  onHoverInColor = '#8d2c49',
+  onHoverInColor = Colors.mainColor,
   Icon,
   size = 25,
   name,
@@ -30,9 +30,9 @@ export default function TextHover({
       {...props}
     >
       <View style={{ width: size, alignItems: 'center' }}>
-        <Icon color={hover || pressed ? onHoverInColor : Colors.white} name={name} size={size}/>
+        <Icon color={hover || pressed ? onHoverInColor : Colors.grayLight} name={name} size={size}/>
       </View>
-      <Text style={{ color: hover || pressed ? onHoverInColor : Colors.light }} className="ml-4 font-regular">
+      <Text style={{ color: hover || pressed ? onHoverInColor : Colors.grayLight }} className="ml-4 font-semiBold">
         {children}
       </Text>
     </Pressable>

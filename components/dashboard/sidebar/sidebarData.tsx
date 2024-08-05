@@ -5,23 +5,19 @@ import IconIonicons from 'react-native-vector-icons/Ionicons';
 import IconFeather from 'react-native-vector-icons/Feather';
 import IconMaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { Colors } from '@/constants/Colors';
+import { Platform } from 'react-native';
 
 const sidebarData: SidebarGroup[] = [
   {
     title: 'MENU',
     items: [
-      {name: 'Home', route: '/home', icon: <IconEntypo name='home' color={Colors.light} size={25}/>}
-    ]
+      {name: 'Home', route: '/home', icon: <IconEntypo name='home' color={Colors.light} size={25}/>},
+    ],
   },
   {
     title: 'MUJERES',
     items: [
-      { name: 'MER', route: '/mer', icon: <IconFontAwesome name="female" color={Colors.light} size={25} /> },
-      {
-        name: 'Gestantes', 
-        route: '/gestantes', 
-        icon: <IconIonicons name="woman" color={Colors.light} size={25} />
-      },
+      { name: 'Padrón', route: '/mer', icon: <IconFontAwesome name="female" color={Colors.light} size={25} /> },
     ],
   },
   {
@@ -51,5 +47,15 @@ const sidebarData: SidebarGroup[] = [
     ],
   },
 ];
+
+// Condicionalmente añadir la sección "Offline" solo para Android e iOS
+if (Platform.OS === 'android' || Platform.OS === 'ios') {
+  sidebarData.push({
+    title: 'OFFLINE',
+    items: [
+      { name: 'Padrón', route: '/offline/padron', icon: <IconFontAwesome name="female" color={Colors.light} size={25} /> },
+    ],
+  });
+}
 
 export default sidebarData;

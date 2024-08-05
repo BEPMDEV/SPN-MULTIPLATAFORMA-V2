@@ -41,24 +41,24 @@ const Notifications: React.FC<{ notificationOpen: boolean, setNotificationOpen: 
     return (
         <Pressable
             disabled={!notificationOpen}
-            style={{ cursor: 'auto', backgroundColor: Colors.mainColor }}
+            style={{ cursor: 'auto', backgroundColor: Colors.white }}
             android_disableSound
-            className={`w-72 h-96 absolute z-[1] right-7 lg:right-60 top-20 rounded-sm border border-customPink ${!notificationOpen && 'hidden'}`}
+            className={`w-72 h-96 absolute z-[1] right-7 lg:right-60 top-20 rounded-sm ${!notificationOpen && 'hidden'}`}
             onPress={() => setNotificationOpen(true)}
         >
             <View className='px-5 py-4'>
-                <Text style={{ fontSize: 16, color: Colors.semiLight }}>Notificaciones</Text>
+                <Text style={{ fontSize: 16, color: Colors.grayLight }}>Notificaciones</Text>
             </View>
-            <View style={{ borderBottomWidth: 1 }} className='w-full border-customPink'></View>
+            <View style={{ borderBottomWidth: 1 }} className='w-full border-gray-300'></View>
             <ScrollView>
                 {notifications.map((notification, index) => (
                     <React.Fragment key={index}>
-                        <ViewHover onHoverInColor='bg-customPink' active={false} className='px-5 py-4'>
-                            <Text style={{ color: Colors.light }} className='font-semiBold'>{notification.title}</Text>
-                            <Text style={{ color: Colors.semiLight }} className='mb-2'>{notification.message}</Text>
-                            <Text style={{ color: Colors.semiLight, fontSize: 12 }} >{notification.date}</Text>
+                        <ViewHover onHoverInColor='bg-gray-100' active={false} className='px-5 py-4'>
+                            <Text style={{ color: Colors.grayDark }} className='font-semiBold'>{notification.title}</Text>
+                            <Text style={{ color: Colors.grayLight }} className='mb-2'>{notification.message}</Text>
+                            <Text style={{ color: Colors.grayLight, fontSize: 12 }} >{notification.date}</Text>
                         </ViewHover>
-                        <View style={{ borderBottomWidth: 1 }} className='w-full border-customPink'></View>
+                        <View style={{ borderBottomWidth: 1 }} className='w-full border-gray-300'></View>
                     </React.Fragment>
                 ))}
             </ScrollView>

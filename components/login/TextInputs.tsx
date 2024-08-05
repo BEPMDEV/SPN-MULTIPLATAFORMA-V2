@@ -14,9 +14,9 @@ interface Props {
 const TextInputs = ({ email, password, onSetEmail, onSetPassword }: Props) => {
 
   const fontSizes = useAdaptiveFont()
+  const size = useResizeReload(1024)
 
   return (
-
     <>
       <View style={styles.container}>
         <Input
@@ -28,7 +28,7 @@ const TextInputs = ({ email, password, onSetEmail, onSetPassword }: Props) => {
           value={email}
           onChangeText={onSetEmail}
           className='font-regular'
-          style={[styles.input, { fontSize: fontSizes.text, backgroundColor: 'transparent', borderColor: Colors.mainColor, borderWidth: 2}]}
+          style={[styles.input, { fontSize: fontSizes.text, backgroundColor: size? 'transparent': 'white', borderColor: Colors.mainColor, borderWidth: 2}]}
           placeholderTextColor={Colors.mainColor}
         />
       </View>
@@ -36,7 +36,7 @@ const TextInputs = ({ email, password, onSetEmail, onSetPassword }: Props) => {
       <View style={styles.container}>
         <Input
           className='font-regular'
-          style={[styles.input, { fontSize: fontSizes.text, backgroundColor: 'transparent', borderColor: Colors.mainColor, borderWidth: 2  }]}
+          style={[styles.input, { fontSize: fontSizes.text, backgroundColor: size? 'transparent': 'white', borderColor: Colors.mainColor, borderWidth: 2  }]}
           placeholderTextColor={Colors.mainColor}
           placeholder="Ingrese Contraseña"
           returnKeyType="done"

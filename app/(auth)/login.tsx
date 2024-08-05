@@ -3,6 +3,7 @@ import Background from '@/components/login/Background';
 import TextInputs from '@/components/login/TextInputs';
 import { Keyboard, View, Platform } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
+import { Image } from 'react-native';
 import { useAuth } from '@/hooks/auth/useAuth';
 import Error from '@/components/login/Error';
 import { Errors } from '@/types/login/LoginErrors';
@@ -10,6 +11,7 @@ import useAuthRedirect from '@/hooks/auth/useAuthRedirect';
 import { ButtonLogin } from '@/components/login/ButtonLogin';
 import { CustomStatusBar } from '@/components/dashboard/general/CustomStatusBar';
 import { Colors } from '@/constants/Colors';
+const logoDiresa = require('@/assets/images/general/diresa-ancash.png')
 
 const LoginPage = () => {
   const { login } = useAuth();
@@ -92,6 +94,7 @@ const LoginPage = () => {
   return (
     <>
       <CustomStatusBar backgroundColor={Colors.mainColor}/>
+      
       <Background>
         {Object.keys(errors).map((field, i) => (
           errors[field].map((error) => (

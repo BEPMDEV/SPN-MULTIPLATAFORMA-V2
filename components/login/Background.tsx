@@ -15,32 +15,18 @@ import useResponsiveLayout from '@/hooks/general/useResponsiveLayout';
 import useResizeReload from '@/hooks/general/useResizeReload';
 import useFirstRender from '@/hooks/general/useFirstRender';
 import { useEffect, useState } from 'react';
+import useAdaptiveFont from '@/hooks/general/useAdaptativeFont';
+const logoDiresa = require('@/assets/images/general/diresa-ancash.png')
 
 const logo = require('@/assets/images/general/logo.png')
-const logoDiresa = require('@/assets/images/general/diresa-ancash.png')
+const backgroundImage =  require('@/assets/images/login/background.jpg');
 
 const isWeb = Platform.OS === 'web';
 
 const Background = ({ children }: { children: React.ReactNode }) => {
   const { containerWidth, height, display } = useResponsiveLayout();
-  const [isKeyboardShowing, setKeyboardShowing] = useState(false)
-
-  useEffect(() => {
-    if (Platform.OS === 'ios' || Platform.OS === 'android') {
-      const keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', () => {
-        setKeyboardShowing(true)
-      });
-
-      const keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', () => {
-        setKeyboardShowing(false)
-      });
-
-      return () => {
-        keyboardDidShowListener.remove();
-        keyboardDidHideListener.remove();
-      };
-    }
-  }, []);
+  const { big } = useAdaptiveFont()
+  const size = useResizeReload(400)
 
   const firstRender = useFirstRender();
 
@@ -50,38 +36,43 @@ const Background = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <>
-      <View
-        style={[isWeb ? { height: height } : { flex: 1 }, styles.background, { display: display === 'none' ? 'flex' : 'none' }]}
+      <ImageBackground
+        source={backgroundImage}
+        resizeMode="cover"
+        style={[isWeb? { height: height } : { flex: 1 }, styles.background, { display: display === 'none' ? 'flex' : 'none' }]}
       >
-        <View className='absolute w-full'>
-          <View style={{ backgroundColor: Colors.mainColor }} className='items-center mb-2'>
-            <View className='pt-2'>
-              <Image source={logo} className={`${isKeyboardShowing? 'w-24 h-24': 'w-32 h-32'}`} />
-            </View>
-            <Text className={`${isKeyboardShowing? 'text-2xl': 'text-4xl'} font-bold text-white pb-5`}>SISGEMA</Text>
-          </View>
-
-          <View className='items-center'>
-            <View style={[ { width: containerWidth as any }]} className='px-3'>
-              {children}
-            </View>
-          </View>
-          
+        <View className='absolute p-2 right-0 z-[1]'>
+          <Image source={logoDiresa} className='w-20 h-20'/>
         </View>
-      </View>
+        <View style={[isWeb && { height: height }, styles.overlay]} />
 
-      <View style={{ backgroundColor: 'white', flexDirection: 'row', display: display === 'none' ? 'none' : 'flex' }}>
+        <KeyboardAvoidingView style={[styles.container, { width: containerWidth as any }]}>
+          {
+            size && <Logo image={logo}/>
+          }
+          <Text style={{ color: Colors.white, fontSize: big }} className='font-bold'>SISGEMA</Text>
+          {children}
+        </KeyboardAvoidingView>
+
+      </ImageBackground>
+
+      <View style={{ backgroundColor: '#fdf2f8', flexDirection: 'row', display: display === 'none' ? 'none' : 'flex' }}>
+
         <View style={styles.containerWeb}>
-          <View
-            style={[isWeb && { height: height }, styles.backgroundAdaptative, { backgroundColor: Colors.mainColor }]}
+          <ImageBackground
+            source={backgroundImage}
+            resizeMode="cover"
+            style={[isWeb && { height: height }, styles.backgroundAdaptative]}
           >
-            <Image source={logoDiresa} className='w-96 h-96' />
-            <Text style={{ fontSize: 60 }} className='font-bold text-white mt-10'>SISGEMA</Text>
-          </View>
+            <Text style={styles.text}>SISGEMA</Text>
+            <View style={[isWeb && { height: height }, styles.overlay]} />
+          </ImageBackground>
         </View>
-
+        <View className='absolute p-3 right-0'>
+          <Image source={logoDiresa} className='w-28 h-28'/>
+        </View>
         <KeyboardAvoidingView style={[styles.container, styles.containerAdaptative]}>
-          <Logo image={logo} />
+          <Logo image={logo}/>
           {children}
         </KeyboardAvoidingView>
       </View>
@@ -92,7 +83,13 @@ const Background = ({ children }: { children: React.ReactNode }) => {
 const styles = StyleSheet.create({
   background: {
     width: '100%',
-    backgroundColor: 'white',
+  },
+  text: {
+    zIndex: 1,
+    textAlign: 'center',
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: 80,
   },
   containerWeb: {
     width: '50%',
@@ -102,6 +99,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 30,
+  },
+  overlay: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: '#290b03' ,
+    opacity: 0.5,
   },
   container: {
     flex: 1,
@@ -114,5 +116,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 120,
   },
 });
+
 
 export default Background;

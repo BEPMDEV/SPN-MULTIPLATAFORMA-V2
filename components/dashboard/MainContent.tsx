@@ -8,7 +8,7 @@ const MainContent: React.FC<{ height: number }> = ({ height }) => {
 
     return (
         <ScrollView style={{ backgroundColor: Colors.backgroundColor }} className='h-full'>
-            <View style={{ height: isMobile ? 'auto' : height - 80 }} className='mt-20 lg:m-0 px-4 py-3'>
+            <View style={{ height: isMobile ? 'auto' : height - 80 }} className='mt-20 lg:m-0 px-4 py-3 pb-20'>
                 <Slot />
             </View>
         </ScrollView>
